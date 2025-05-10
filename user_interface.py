@@ -40,6 +40,31 @@ def get_user_input():
     return query, domain, pages, headless
 
 
+def get_interaction_level():
+    """
+    Запрашивает у пользователя уровень взаимодействия с сайтом
+
+    Returns:
+        str: Уровень взаимодействия ('low', 'medium', 'high')
+    """
+    print("\nВыберите уровень взаимодействия с сайтом:")
+    print("1 - Низкий (минимальные действия)")
+    print("2 - Средний (умеренное количество действий)")
+    print("3 - Высокий (активное исследование сайта)")
+
+    interaction_input = input("Введите номер [2]: ").strip()
+
+    if not interaction_input or interaction_input == "2":
+        return "medium"
+    elif interaction_input == "1":
+        return "low"
+    elif interaction_input == "3":
+        return "high"
+    else:
+        print("Некорректный ввод. Будет использован средний уровень взаимодействия.")
+        return "medium"
+
+
 def ask_user_yes_no(question, default=True):
     """
     Задает пользователю вопрос с вариантами ответа да/нет
@@ -107,7 +132,7 @@ def display_screenshot_path(screenshot_file):
     print(f"Скриншот сохранен в файл: {screenshot_file}")
 
 
-def show_program_start_info(query, domain, pages, headless, delay_factor, stay_time):
+def show_program_start_info(query, domain, pages, headless, delay_factor, stay_time, interaction_level="medium"):
     """
     Выводит информацию о параметрах запуска программы
 
@@ -118,6 +143,7 @@ def show_program_start_info(query, domain, pages, headless, delay_factor, stay_t
         headless (bool): Запускать ли браузер в фоновом режиме
         delay_factor (float): Множитель задержки
         stay_time (int): Время пребывания на сайте
+        interaction_level (str): Уровень взаимодействия с сайтом
     """
     print("\n" + "=" * 50)
     print(f"ПОИСК САЙТА В ВЫДАЧЕ ЯНДЕКСА")
@@ -128,6 +154,15 @@ def show_program_start_info(query, domain, pages, headless, delay_factor, stay_t
     print(f"Режим работы: {'Фоновый' if headless else 'Видимый'}")
     print(f"Фактор задержки: {delay_factor}x")
     print(f"Время на сайте: {stay_time} сек.")
+
+    # Добавляем вывод уровня взаимодействия
+    interaction_desc = {
+        "low": "Низкий (минимальные действия)",
+        "medium": "Средний (умеренное количество действий)",
+        "high": "Высокий (активное исследование сайта)"
+    }
+    print(f"Уровень взаимодействия: {interaction_desc.get(interaction_level, 'Средний')}")
+
     print("-" * 50)
 
 

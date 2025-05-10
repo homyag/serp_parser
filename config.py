@@ -75,6 +75,57 @@ PHONE_PATTERNS = [
     r'\+\d{1,4}[-\s]?\d{3}[-\s]?\d{3}[-\s]?\d{4}'      # +7-123-456-7890
 ]
 
+# Новые селекторы для расширенного поиска телефонов
+EXTENDED_PHONE_SELECTORS = [
+    "//a[contains(@href, 'tel:')]",  # Ссылки tel:
+    "//*[contains(@class, 'phone')]",  # Элементы с классом phone
+    "//*[contains(@class, 'tel')]",  # Элементы с классом tel
+    "//*[contains(@id, 'phone')]",  # Элементы с id phone
+    "//div[contains(@class, 'contact')]//p",  # Параграфы в блоке контактов
+    "//div[contains(@class, 'footer')]//p",  # Параграфы в футере
+    "//div[contains(@class, 'header')]//p",  # Параграфы в хедере
+    "//div[contains(@class, 'call')]",  # Блоки обратного звонка
+    "//div[contains(@class, 'contact')]",  # Блоки с контактами
+    "//div[contains(@class, 'whatsapp')]//a",  # Ссылки на WhatsApp
+    "//div[contains(@class, 'viber')]//a",  # Ссылки на Viber
+    "//div[contains(@class, 'telegram')]//a"  # Ссылки на Telegram
+]
+
+# Селекторы для интерактивных элементов
+INTERACTIVE_ELEMENT_SELECTORS = {
+    "buttons": [
+        "button",
+        "a.btn",
+        "a.button",
+        "div.btn",
+        "div.button"
+    ],
+    "menu_items": [
+        "nav li a",
+        ".menu a",
+        ".navbar a",
+        "header a"
+    ],
+    "forms": [
+        "form",
+        ".contact-form",
+        ".feedback-form",
+        ".search-form"
+    ]
+}
+
+# Данные для заполнения форм
+FORM_DATA = {
+    "name": ["Иван Петров", "Алексей Смирнов", "Екатерина Иванова"],
+    "email": ["test@example.com", "info@example.org", "contact@test.ru"],
+    "phone": ["+7(123)456-78-90", "8(987)654-32-10", "8 800 123 45 67"],
+    "message": [
+        "Здравствуйте! Интересует дополнительная информация о ваших услугах.",
+        "Добрый день, хотел бы узнать подробности о сотрудничестве.",
+        "Меня заинтересовало ваше предложение. Как можно получить консультацию?"
+    ]
+}
+
 # Базовый URL для Яндекса
 YANDEX_BASE_URL = "https://ya.ru"
 YANDEX_SEARCH_URL = f"{YANDEX_BASE_URL}/search/"
@@ -89,3 +140,19 @@ SCREENSHOT_PREFIX = "screenshot_"
 DEFAULT_PAGES = 3
 DEFAULT_STAY_TIME = 15
 DEFAULT_DELAY_FACTOR = 1.0
+
+# Параметры уровней взаимодействия с сайтом
+INTERACTION_LEVELS = {
+    "low": {
+        "max_time": 30,  # Максимальное время взаимодействия в секундах
+        "num_actions": 3,  # Примерное количество действий
+    },
+    "medium": {
+        "max_time": 90,
+        "num_actions": 8,
+    },
+    "high": {
+        "max_time": 180,
+        "num_actions": 15,
+    }
+}

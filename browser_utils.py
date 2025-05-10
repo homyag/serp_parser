@@ -41,7 +41,7 @@ def setup_browser(headless=False):
     options.add_experimental_option("useAutomationExtension", False)
 
     # Добавляем настройки для имитации обычного браузера
-    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--window-size=1440,960")
     options.add_argument("--start-maximized")
     options.add_argument("--disable-extensions")
     options.add_argument("--disable-notifications")
@@ -50,7 +50,7 @@ def setup_browser(headless=False):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
     # Более реалистичный размер окна
-    driver.set_window_size(1920, 1080)
+    driver.set_window_size(1440, 960)
 
     # Скрытие признаков автоматизации
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")

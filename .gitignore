@@ -2,3 +2,4 @@
 .venv
 script.py
 __pycache__
+/phone_numbers.txt
