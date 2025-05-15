@@ -3,3 +3,5 @@ bs4~=0.0.2
 beautifulsoup4~=4.13.4
 selenium~=4.31.0
 webdriver-manager~=4.0.2
+PyQt5~=5.15.10
+PyQt5-stubs==5.15.6.0
